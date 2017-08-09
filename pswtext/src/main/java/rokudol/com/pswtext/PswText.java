@@ -24,41 +24,34 @@ import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
-/**
- * @name：
- * @author： 司马林
- * @phone： 18423134135
- * @createTime： 2017/8/8
- * @modifyTime： 2017/8/8
- * @explain：
- */
+
 public class PswText  extends View {
-	private InputMethodManager input;//输入法管理
-	private ArrayList<Integer> result;//输入当前结果保存
-	private int saveResult;//保存按下back键时输入的密码总数
-	private int pswLength;//密码长度
-	private int borderColor;//边框颜色
-	private int borderShadowColor;//边框阴影颜色
-	private int pswColor;//密码颜色
-	private int pswTextSize;//密码明文大小
-	private int inputBorderColor;//输入时边框颜色
-	private int borderImg;//密码框图片
-	private int inputBorderImg;//输入时密码框图片
-	private int delayTime;//延迟绘制圆点时间
-	private boolean isBorderImg;//密码框是否使用图片绘制
-	private boolean isShowTextPsw;//按back键时是否绘制明文密码
-	private boolean isShowBorderShadow;//输入密码时，密码框颜色是否显示阴影
-	private boolean clearTextPsw;//只绘制明文密码
-	private boolean darkPsw;//只绘制圆点密码
-	private Paint pswDotPaint;//密码原点画笔
-	private Paint pswTextPaint;//密码明文画笔
-	private Paint borderPaint;//边框画笔
-	private Paint inputBorderPaint;//输入时边框画笔
-	private RectF borderRectF;//边框矩形
-	private int borderRadius;//边框圆角程度
-	private int borderWidth;//边框宽度
-	private int spacingWidth;//边框之间的间距
-	private InputCallBack inputCallBack;//输入监听
+	private InputMethodManager input;//Input method management
+	private ArrayList<Integer> result;//Enter the current result to save
+	private int saveResult;//Save the total number of passwords entered when the back key is pressed
+	private int pswLength;//Password length
+	private int borderColor;//Border color
+	private int borderShadowColor;//Border shadow color
+	private int pswColor;//password color
+	private int pswTextSize;//Password plaintext size
+	private int inputBorderColor;//The border color is entered
+	private int borderImg;//Password box picture
+	private int inputBorderImg;//When entering the password box picture
+	private int delayTime;//Delay the drawing of the dot time
+	private boolean isBorderImg;//Whether the password box is drawn using pictures
+	private boolean isShowTextPsw;//Whether to draw a clear text password when you press the back key
+	private boolean isShowBorderShadow;//When the password is entered, the password box color shows shadows
+	private boolean clearTextPsw;//Only draw plain text password
+	private boolean darkPsw;//Only draw the dot password
+	private Paint pswDotPaint;//Password origin pen
+	private Paint pswTextPaint;//Password clear brush
+	private Paint borderPaint;//Border brush
+	private Paint inputBorderPaint;//When you enter the border brush
+	private RectF borderRectF;//Border rectangle
+	private int borderRadius;//Border rounded
+	private int borderWidth;//Border width
+	private int spacingWidth;//The spacing between the borders
+	private InputCallBack inputCallBack;//Enter listen
 
 	private static boolean invalidated = false;
 	private Handler handler = new Handler() {
@@ -96,7 +89,7 @@ public class PswText  extends View {
 		initView(context, attrs);
 	}
 
-	//初始化各数值
+	//Initialize the values
 	private void initView(Context context, AttributeSet attrs) {
 		this.setOnKeyListener(new NumKeyListener());
 		this.setFocusable(true);
@@ -139,45 +132,45 @@ public class PswText  extends View {
 			isShowBorderShadow = false;
 			pswTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 18, getResources().getDisplayMetrics());
 		}
-		//边框宽度初始值为40dp
+		//The initial width of the border is 40dp
 		borderWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
-		//边框间的间距初始值为10dp
+		//The spacing between frames is 10dp
 		spacingWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
-		//边框的圆角程度初始值为8dp
+		//The roundness of the border is 8dp
 		borderRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
 		borderRectF = new RectF();
 		initPaint();
 	}
 
-	//初始化各画笔
+	//Initialize each brush
 	private void initPaint() {
-		//密码原点初始化
+		//The password origin is initialized
 		pswDotPaint = new Paint();
 		pswDotPaint.setAntiAlias(true);
 		pswDotPaint.setStrokeWidth(3);
 		pswDotPaint.setStyle(Paint.Style.FILL);
 		pswDotPaint.setColor(pswColor);
 
-		//密码明文初始化
+		//Password plaintext initialization
 		pswTextPaint = new Paint();
 		pswTextPaint.setAntiAlias(true);
 		pswTextPaint.setFakeBoldText(true);
 		pswTextPaint.setColor(pswColor);
 
-		//边框画笔初始化
+		//Border brush is initialized
 		borderPaint = new Paint();
 		borderPaint.setAntiAlias(true);
 		borderPaint.setColor(borderColor);
 		borderPaint.setStyle(Paint.Style.STROKE);
 		borderPaint.setStrokeWidth(3);
 
-		//输入时边框画笔初始化
+		//Input the border brush to initialize
 		inputBorderPaint = new Paint();
 		inputBorderPaint.setAntiAlias(true);
 		inputBorderPaint.setColor(inputBorderColor);
 		inputBorderPaint.setStyle(Paint.Style.STROKE);
 		inputBorderPaint.setStrokeWidth(3);
-		//密码框阴影颜色
+		//Password box shadow color
 		if (isShowBorderShadow) {
 			inputBorderPaint.setShadowLayer(6, 0, 0, borderShadowColor);
 			setLayerType(LAYER_TYPE_SOFTWARE, inputBorderPaint);
@@ -193,16 +186,16 @@ public class PswText  extends View {
 		int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
 		if (widthSpec == MeasureSpec.AT_MOST) {
-			if (heightSpec != MeasureSpec.AT_MOST) {//高度已知但宽度未知时
+			if (heightSpec != MeasureSpec.AT_MOST) {//Height is known but when width is unknown
 				spacingWidth = heightSize / 4;
 				widthSize = (heightSize * pswLength) + (spacingWidth * (pswLength - 1));
 				borderWidth = heightSize;
-			} else {//宽度，高度都未知时
+			} else {//Width, height are unknown
 				widthSize = (borderWidth * pswLength) + (spacingWidth * (pswLength - 1));
 				heightSize = borderWidth;
 			}
 		} else {
-			//宽度已知但高度未知
+			//The width is known but the height is unknown
 			if (heightSpec == MeasureSpec.AT_MOST) {
 				borderWidth = (widthSize * 4) / (5 * pswLength);
 				spacingWidth = borderWidth / 4;
@@ -215,23 +208,25 @@ public class PswText  extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		int dotRadius = borderWidth / 6;//圆圈占格子的三分之一
+		int dotRadius = borderWidth / 6;//Circle accounts for one third of the lattice
 		int height = getHeight() - 2;
 
-		//如果文字大小等于默认值，则按比例调整文字大小，否则按实际输入的大小设置
+		/*
+		* If the text size is equal to the default value, then adjust the size of the text size, otherwise set by the actual size of the input
+		* */
 		if (pswTextSize == (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 18, getResources().getDisplayMetrics())) {
 			pswTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, borderWidth / 8, getResources().getDisplayMetrics());
 		}
 		pswTextPaint.setTextSize(pswTextSize);
 
-		//绘制密码格
+		//Draw the password grid
 		drawBorder(canvas, height);
 
 		if (clearTextPsw) {
 			for (int i = 0; i < result.size(); i++) {
 				String num = result.get(i) + "";
 				drawText(canvas, num, i);
-				//密码框坐标
+				//Password box coordinates
 				int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
 				int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
 
@@ -252,12 +247,12 @@ public class PswText  extends View {
 				return;
 			}
 			for (int i = 0; i < result.size(); i++) {
-				//密码明文
+				//Password plaintext
 				String num = result.get(i) + "";
-				//圆点坐标
+				//Dot coordinates
 				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
 				float circleY = borderWidth / 2;
-				//密码框坐标
+				//Password box coordinates
 				int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
 				int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
 
@@ -265,18 +260,22 @@ public class PswText  extends View {
 
 				drawText(canvas, num, i);
 
-				//当输入位置 = 输入的长度时，即判断当前绘制的位置是否为当前密码位置，若是则延迟1s后绘制圆点
+				/*
+				* When the input position = input length,
+				* that is to determine whether the current location of the current password is the location,
+				* if it is delayed after 1s dots
+				* */
 				if (i + 1 == result.size()) {
 					handler.sendEmptyMessageDelayed(1, delayTime);
 				}
-				//若按下back键保存的密码 > 输入的密码长度，则只绘制圆点
-				//即按下back键时，不绘制明文密码
+				//If you press the back key to save the password> enter the password length, only draw the dot
+				//When you press the back button, do not draw plain text password
 				if (!isShowTextPsw) {
 					if (saveResult > result.size()) {
 						canvas.drawCircle((float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 + (0.6 * spacingWidth))), circleY, dotRadius, pswDotPaint);
 					}
 				}
-				//当输入第二个密码时，才开始绘制圆点
+				//When the second password is entered, the dots are drawn
 				if (i >= 1) {
 					canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 				}
@@ -286,7 +285,7 @@ public class PswText  extends View {
 
 	}
 
-	//绘制明文密码
+	//Draw a plain text password
 	private void drawText(Canvas canvas, String num, int i) {
 		Rect mTextBound = new Rect();
 		pswTextPaint.getTextBounds(num, 0, num.length(), mTextBound);
@@ -298,7 +297,7 @@ public class PswText  extends View {
 		}
 	}
 
-	//延迟1s后，将当前输入的明文密码绘制为圆点
+	//After 1s delay, draw the currently entered plaintext password as a dot
 	private void drawDelayCircle(Canvas canvas, int height, int dotRadius) {
 		invalidated = false;
 		for (int i = 0; i < result.size(); i++) {
@@ -314,7 +313,7 @@ public class PswText  extends View {
 		handler.removeMessages(1);
 	}
 
-	//初始判断是否使用图片绘制密码框
+	//The initial judgment whether to use the picture to draw the password box
 	private void drawBorder(Canvas canvas, int height) {
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), borderImg);
 		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -333,7 +332,7 @@ public class PswText  extends View {
 
 	}
 
-	//判断是否使用图片绘制密码框
+	//Determine whether to use the picture to draw the password box
 	private void drawBitmapOrBorder(Canvas canvas, int left, int right, int height) {
 		if (isBorderImg) {
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), inputBorderImg);
@@ -347,13 +346,13 @@ public class PswText  extends View {
 		}
 	}
 
-	//清除密码
+	//clear password
 	public void clearPsw() {
 		result.clear();
 		invalidate();
 	}
 
-	//获取输入的密码
+	//get password
 	public String getPsw() {
 		StringBuffer sb = new StringBuffer();
 		for (int i : result) {
@@ -362,14 +361,14 @@ public class PswText  extends View {
 		return sb.toString();
 	}
 
-	//隐藏键盘
+	//hide keyBord
 	public void hideKeyBord() {
 		input.hideSoftInputFromWindow(this.getWindowToken(), 0);
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (event.getAction() == MotionEvent.ACTION_DOWN) {//点击控件弹出输入键盘
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {//Click the controls to pop up the input keyboard
 			requestFocus();
 			input.showSoftInput(this, InputMethodManager.SHOW_FORCED);
 			return true;
@@ -387,7 +386,7 @@ public class PswText  extends View {
 
 	@Override
 	public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-		outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;//输入类型为数字
+		outAttrs.inputType = InputType.TYPE_CLASS_NUMBER;//inputType is number
 		outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
 		return new NumInputConnection(this, false);
 	}
@@ -405,13 +404,13 @@ public class PswText  extends View {
 
 		@Override
 		public boolean commitText(CharSequence text, int newCursorPosition) {
-			//这里是接受输入法的文本的，我们只处理数字，所以什么操作都不做
+			//Here is to accept the input method of the text, we only deal with the number, so what operations do not do
 			return super.commitText(text, newCursorPosition);
 		}
 
 		@Override
 		public boolean deleteSurroundingText(int beforeLength, int afterLength) {
-			//软键盘的删除键 DEL 无法直接监听，自己发送del事件
+			//Soft keyboard delete key DEL can not directly monitor, send their own del event
 			if (beforeLength == 1 && afterLength == 0) {
 				return super.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
 						&& super.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL));
@@ -421,16 +420,16 @@ public class PswText  extends View {
 	}
 
 	/**
-	 * 按键监听器
+	 * input listener
 	 */
 	class NumKeyListener implements OnKeyListener {
 		@Override
 		public boolean onKey(View v, int keyCode, KeyEvent event) {
 			if (event.getAction() == KeyEvent.ACTION_DOWN) {
-				if (event.isShiftPressed()) {//处理*#等键
+				if (event.isShiftPressed()) {//Handle * # and other keys
 					return false;
 				}
-				if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {//只处理数字
+				if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {//Only deal with numbers
 					if (result.size() < pswLength) {
 						result.add(keyCode - 7);
 						invalidate();
@@ -439,7 +438,7 @@ public class PswText  extends View {
 					return true;
 				}
 				if (keyCode == KeyEvent.KEYCODE_DEL) {
-					if (!result.isEmpty()) {//不为空，删除最后一个
+					if (!result.isEmpty()) {//Not empty, delete the last one
 						saveResult = result.size();
 						result.remove(result.size() - 1);
 						invalidate();
@@ -452,19 +451,19 @@ public class PswText  extends View {
 				}
 			}
 			return false;
-		}//onKey
+		}
 
 		/**
-		 * 判断是否输入完成，输入完成后调用callback
+		 * To determine whether to complete the input, call the call after the completion of call
 		 */
 		void ensureFinishInput() {
-			if (result.size() == pswLength && inputCallBack != null) {//输入完成
+			if (result.size() == pswLength && inputCallBack != null) {//The input is complete
 				StringBuffer sb = new StringBuffer();
 				for (int i : result) {
 					sb.append(i);
 				}
 				InputMethodManager imm = (InputMethodManager) PswText.this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(PswText.this.getWindowToken(), 0); //强制隐藏键盘
+				imm.hideSoftInputFromWindow(PswText.this.getWindowToken(), 0); //Force the keyboard to be hidden
 				inputCallBack.onInputFinish(sb.toString());
 			}
 		}

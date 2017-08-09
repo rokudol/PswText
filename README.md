@@ -1,5 +1,9 @@
 ﻿# PswText
+![](/GIF.gif)
+使用方法：
+compile 'com.rokudoll:PswText:1.0.0'
 
+属性：
 | 属性名        |  值   |  作用  |
 | --------   | -----:  | :----:  |
 | pswLength     | integer |   规定密码长度，默认为6     |
