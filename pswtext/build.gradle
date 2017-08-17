@@ -39,7 +39,7 @@ publish {
     userOrg = 'rokudoll'
     groupId = 'com.rokudoll'
     artifactId = 'PswText'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'a powerful passwordEditText'
     website = 'https://github.com/rokudol/PswText.git'
 }
