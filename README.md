@@ -1,4 +1,6 @@
 ﻿# PswText
+简介：
+====
 ![](/GIF.gif)
 
 博客地址：[强大的密码输入框][1]
@@ -28,6 +30,12 @@ compile 'com.rokudoll:PswText:1.0.0'
 | isShowBorderShadow | boolean | 输入密码时是否需要绘制阴影,为true时设置borderShadow_color才有效，默认为false |
 | clearTextPsw | boolean | 是否只绘制明文密码，默认为false |
 | darkPsw | boolean | 是否只绘制圆点，默认为false |
+| isChangeBorder | boolean | 是否在输入密码时不更改密码框颜色，默认为false |
 
-
+  
+更新说明：
+======
+v1.0.1:
+_修复bug：_ 重新计算高度，修复密码框上下两根线绘制不完全的问题
+_新增功能：_ 可选择在输入密码时不更改密码框颜色，xml属性：isChangeBorder，为true：输入时不更改密码框颜色，为false：输入时更改密码框颜色
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
