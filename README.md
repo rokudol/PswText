@@ -7,7 +7,29 @@
 
 
 使用方法：
-compile 'com.rokudoll:PswText:1.0.0'
+Step 1. Add the JitPack repository to your build file
+
+gradle
+maven
+sbt
+leiningen
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}Copy
+Step 2. Add the dependency
+
+	dependencies {
+	        compile 'com.github.rokudol:PswText:v1.0.1'
+	}
+	
+
+或者
+compile 'com.rokudoll:PswText:1.0.1'
 
 属性：
 
@@ -36,6 +58,9 @@ compile 'com.rokudoll:PswText:1.0.0'
 更新说明：
 ======
 v1.0.1:
+
 _修复bug：_ 重新计算高度，修复密码框上下两根线绘制不完全的问题
+
 _新增功能：_ 可选择在输入密码时不更改密码框颜色，xml属性：isChangeBorder，为true：输入时不更改密码框颜色，为false：输入时更改密码框颜色
+
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
