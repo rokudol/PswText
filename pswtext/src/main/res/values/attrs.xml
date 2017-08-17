@@ -33,5 +33,7 @@
         <attr name="clearTextPsw" format="boolean"/>
         <!--是否只绘制圆点-->
         <attr name="darkPsw" format="boolean"/>
+        <!--是否在输入密码时不更改密码框颜色-->
+        <attr name="isChangeBorder" format="boolean"/>
     </declare-styleable>
 </resources>
