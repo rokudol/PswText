@@ -36,7 +36,7 @@ Step 2. Add the dependency
 
 Or add directly to build：
 
-compile 'com.rokudoll:PswText:1.0.1'
+    compile 'com.rokudoll:PswText:1.0.1'
 
 
 attrs：
@@ -78,8 +78,9 @@ _added function：_
 
 The corresponding attribute：isChangeBorder.
 
-when true：do not change the password box color when typing
-when false：change the password box color when typing
+When isChangeBorder is true：do not change the password box color when typing
+
+When isChangeBorder is false：change the password box color when typing
 
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
