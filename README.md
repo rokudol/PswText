@@ -1,12 +1,14 @@
 ﻿# PswText
-简介：
+Introduction：
 ====
 ![](/GIF.gif)
 
-博客地址：[强大的密码输入框][1]
+Blog Address：[Powerful password input box][1]
 
 
-使用方法：
+[中文文档][2]
+
+How to use：
 
 
 Step 1. Add the JitPack repository to your build file
@@ -32,45 +34,53 @@ Step 2. Add the dependency
 	}
 	
 
-或者直接在build中添加：
+Or add directly to build：
 
 compile 'com.rokudoll:PswText:1.0.1'
 
 
-属性：
+attrs：
 
 
 
-| 属性名        |  值   |  作用  |
+| Attribute name        |  value   |  effect  |
 | --------   | -----:  | :----:  |
-| pswLength     | integer |   规定密码长度，默认为6     |
-| delayTime | integer | 延迟绘制密码圆点的时间 默认1000,1000=1s|
-| borderColor        |   color   |   初始化密码框颜色   |
-| pswColor        |    color    |  密码颜色  |
-| inputBorder_color | color | 输入时密码框颜色 |
-| borderShadow_color | color | 输入时密码框阴影颜色 |
-| psw_textSize | sp | 明文密码大小 |
-| borderRadius | dp | 不使用图片时，密码框圆角大小|
-| borderImg | drawable | 密码框图片 |
-| inputBorderImg | drawable | 输入时变化的密码框图片 |
-| isDrawBorderImg | boolean | 是否使用图片绘制密码框，为true时设置borderImg、inputBorderImg才有效，默认为false |
-| isShowTextPsw | boolean | 按下back键时是否需要绘制当前位置的明文密码，默认为false |
-| isShowBorderShadow | boolean | 输入密码时是否需要绘制阴影,为true时设置borderShadow_color才有效，默认为false |
-| clearTextPsw | boolean | 是否只绘制明文密码，默认为false |
-| darkPsw | boolean | 是否只绘制圆点，默认为false |
-| isChangeBorder | boolean | 是否在输入密码时不更改密码框颜色，默认为false |
+| pswLength     | integer |   the length of the password, the default is 6    |
+| delayTime | integer | delay the time to draw the password dot default 1000,1000=1s|
+| borderColor        |   color   |   initialize the password box color   |
+| pswColor        |    color    |  password color  |
+| inputBorder_color | color | when you enter the password box color |
+| borderShadow_color | color | when you enter the password box, the shadow color |
+| psw_textSize | sp | clear password textSize |
+| borderRadius | dp | when the picture is not used, the password box is rounded|
+| borderImg | drawable | password box picture |
+| inputBorderImg | drawable | enter the password box when changing the picture |
+| isDrawBorderImg | boolean | whether to use the picture to draw the password box, set the borderImg true, inputBorderImg only effective, the default is false |
+| isShowTextPsw | boolean | when you press the back key, you need to draw the plain text password for the current location. The default is false |
+| isShowBorderShadow | boolean | whether you need to draw a shadow when you enter a password, set borderShadow_color to true, the default is false |
+| clearTextPsw | boolean | whether to draw only plain text password, the default is false |
+| darkPsw | boolean | whether to draw only dots, the default is false |
+| isChangeBorder | boolean | whether to change the password box color when entering the password, the default is false |
 
   
-更新说明：
+Release Notes：
 ======
 v1.0.1:
 
-_修复bug：_ 
+_fix bug：_ 
 
-1. 重新计算高度，修复密码框上下两根线绘制不完全的问题
+1. Recalculate height,Repair the password box up and down two lines to draw the incomplete problem
 
-_新增功能：_ 
+_added function：_ 
 
-1. 可选择在输入密码时不更改密码框颜色，xml属性：isChangeBorder，为true：输入时不更改密码框颜色，为false：输入时更改密码框颜色
+1. You can choose not to change the password box color when entering a password
+
+
+The corresponding attribute：isChangeBorder.
+
+when true：do not change the password box color when typing
+when false：change the password box color when typing
+
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
+  [2]: https://github.com/rokudol/PswText/blob/master/CN-README.md
