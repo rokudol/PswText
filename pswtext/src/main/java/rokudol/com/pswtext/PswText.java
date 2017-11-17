@@ -193,10 +193,10 @@ public class PswText extends View {
 		if (widthSpec == MeasureSpec.AT_MOST) {
 			if (heightSpec != MeasureSpec.AT_MOST) {//高度已知但宽度未知时
 				spacingWidth = heightSize / 4;
-				widthSize = (heightSize * pswLength) + (spacingWidth * (pswLength - 1));
+				widthSize = (heightSize * pswLength) + (spacingWidth * pswLength);
 				borderWidth = heightSize;
 			} else {//宽高都未知时
-				widthSize = (borderWidth * pswLength) + (spacingWidth * (pswLength - 1));
+				widthSize = (borderWidth * pswLength) + (spacingWidth * pswLength);
 				heightSize = (int) (borderWidth + ((borderPaint.getStrokeWidth()) * 2));
 			}
 		} else {
@@ -234,7 +234,7 @@ public class PswText extends View {
 				}
 			} else if (darkPsw) {
 				for (int i = 0; i < result.size(); i++) {
-					float circleX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+					float circleX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 					float circleY = height / 2;
 					canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 				}
@@ -280,7 +280,7 @@ public class PswText extends View {
 					drawText(canvas, num, i);
 					//计算密码边框坐标
 					int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
-					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
+					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 
 					drawBitmapOrBorder(canvas, left, right, height);
 				}
@@ -289,7 +289,7 @@ public class PswText extends View {
 					float circleX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
 					float circleY = height / 2;
 					int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
-					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
+					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 					drawBitmapOrBorder(canvas, left, right, height);
 					canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 				}
@@ -306,7 +306,7 @@ public class PswText extends View {
 					float circleY = height / 2;
 					//密码框坐标
 					int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
-					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
+					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 
 					drawBitmapOrBorder(canvas, left, right, height);
 
@@ -365,7 +365,7 @@ public class PswText extends View {
 				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
 				float circleY = height / 2;
 				int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
-				int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
+				int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 				canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 				drawBitmapOrBorder(canvas, left, right, height);
 			}
@@ -381,12 +381,12 @@ public class PswText extends View {
 		Rect src = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 		for (int i = 0; i < pswLength; i++) {
 			int left = (int) ((i * (borderWidth + spacingWidth)) + (0.5 * spacingWidth));
-			int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.7 * spacingWidth));
+			int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 			if (isBorderImg) {
-				Rect dst = new Rect(left, (int) (0 + (borderPaint.getStrokeWidth())), right, (int) (height - (borderPaint.getStrokeWidth())));
+				Rect dst = new Rect(left, (int) borderPaint.getStrokeWidth(), right, (int) (height - (borderPaint.getStrokeWidth())));
 				canvas.drawBitmap(bitmap, src, dst, borderPaint);
 			} else {
-				borderRectF.set(left, 0 + (borderPaint.getStrokeWidth()), right, height - (borderPaint.getStrokeWidth()));
+				borderRectF.set(left, borderPaint.getStrokeWidth(), right, height - (borderPaint.getStrokeWidth()));
 				canvas.drawRoundRect(borderRectF, borderRadius, borderRadius, borderPaint);
 			}
 		}
@@ -524,9 +524,9 @@ public class PswText extends View {
 				for (int i : result) {
 					sb.append(i);
 				}
+				inputCallBack.onInputFinish(sb.toString());
 				InputMethodManager imm = (InputMethodManager) PswText.this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(PswText.this.getWindowToken(), 0); //输入完成后隐藏键盘
-				inputCallBack.onInputFinish(sb.toString());
 			}
 		}
 	}
