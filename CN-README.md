@@ -28,7 +28,7 @@ Step 2. Add the dependency
 
 
 	dependencies {
-	        compile 'com.github.rokudol:PswText:v1.0.1'
+	        compile 'com.github.rokudol:PswText:v1.0.2'
 	}
 	
 
