@@ -63,7 +63,7 @@ compile 'com.rokudoll:PswText:1.0.1'
   
 更新说明：
 ======
-v1.0.1:
+## v1.0.1:
 
 _修复bug：_ 
 
@@ -72,5 +72,11 @@ _修复bug：_
 _新增功能：_ 
 
 1. 可选择在输入密码时不更改密码框颜色，xml属性：isChangeBorder，为true：输入时不更改密码框颜色，为false：输入时更改密码框颜色
+
+## v1.0.2
+
+_修复bug：_
+
+1. 确定高度时，宽度自适应导致宽度绘制不正确的问题
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
