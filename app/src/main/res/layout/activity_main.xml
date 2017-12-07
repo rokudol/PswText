@@ -10,6 +10,7 @@
     tools:context="rokudol.com.pswedittext.MainActivity">
 
     <rokudol.com.pswtext.PswText
+        android:id="@+id/psw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

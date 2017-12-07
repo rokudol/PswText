@@ -65,6 +65,8 @@ public class PswText extends View {
 					invalidated = true;
 					invalidate();
 					break;
+				default:
+					break;
 			}
 		}
 	};
@@ -75,6 +77,155 @@ public class PswText extends View {
 
 	public void setInputCallBack(InputCallBack inputCallBack) {
 		this.inputCallBack = inputCallBack;
+	}
+
+	public void setPswLength(int pswLength) {
+		this.pswLength = pswLength;
+		invalidate();
+	}
+
+	public int getPswLength() {
+		return pswLength;
+	}
+
+	public void setBorderColor(int borderColor) {
+		this.borderColor = borderColor;
+		borderPaint.setColor(borderColor);
+		invalidate();
+	}
+
+	public int getBorderColor() {
+		return borderColor;
+	}
+
+	public void setPswColor(int pswColor) {
+		this.pswColor = pswColor;
+		pswDotPaint.setColor(pswColor);
+		pswTextPaint.setColor(pswColor);
+		invalidate();
+	}
+
+	public int getPswColor() {
+		return pswColor;
+	}
+
+	public void setInputBorderColor(int inputBorderColor) {
+		this.inputBorderColor = inputBorderColor;
+		inputBorderPaint.setColor(inputBorderColor);
+		invalidate();
+	}
+
+	public int getInputBorderColor() {
+		return inputBorderColor;
+	}
+
+	public void setBorderShadowColor(int borderShadowColor) {
+		this.borderShadowColor = borderShadowColor;
+		inputBorderPaint.setShadowLayer(6, 0, 0, borderShadowColor);
+		invalidate();
+	}
+
+	public int getBorderShadowColor() {
+		return borderShadowColor;
+	}
+
+	public void setPswTextSize(int pswTextSize) {
+		this.pswTextSize = pswTextSize;
+		invalidate();
+	}
+
+	public int getPswTextSize() {
+		return pswTextSize;
+	}
+
+	public void setBorderRadius(int borderRadius) {
+		this.borderRadius = borderRadius;
+		invalidate();
+	}
+
+	public int getBorderRadius() {
+		return borderRadius;
+	}
+
+	public void setIsBorderImg(boolean borderImg) {
+		isBorderImg = borderImg;
+		invalidate();
+	}
+
+	public boolean isBorderImg() {
+		return isBorderImg;
+	}
+
+	public void setIsShowTextPsw(boolean showTextPsw) {
+		isShowTextPsw = showTextPsw;
+		invalidate();
+	}
+
+	public boolean isShowTextPsw() {
+		return isShowTextPsw;
+	}
+
+	public void setBorderImg(int borderImg) {
+		this.borderImg = borderImg;
+		invalidate();
+	}
+
+	public int getBorderImg() {
+		return borderImg;
+	}
+
+	public void setInputBorderImg(int inputBorderImg) {
+		this.inputBorderImg = inputBorderImg;
+		invalidate();
+	}
+
+	public int getInputBorderImg() {
+		return inputBorderImg;
+	}
+
+	public void setDelayTime(int delayTime) {
+		this.delayTime = delayTime;
+		invalidate();
+	}
+
+	public int getDelayTime() {
+		return delayTime;
+	}
+
+	public void setClearTextPsw(boolean clearTextPsw) {
+		this.clearTextPsw = clearTextPsw;
+		invalidate();
+	}
+
+	public boolean isClearTextPsw() {
+		return clearTextPsw;
+	}
+
+	public void setDarkPsw(boolean darkPsw) {
+		this.darkPsw = darkPsw;
+		invalidate();
+	}
+
+	public boolean isDarkPsw() {
+		return darkPsw;
+	}
+
+	public void setIsChangeBorder(boolean changeBorder) {
+		isChangeBorder = changeBorder;
+		invalidate();
+	}
+
+	public boolean isChangeBorder() {
+		return isChangeBorder;
+	}
+
+	public void setShowBorderShadow(boolean showBorderShadow) {
+		isShowBorderShadow = showBorderShadow;
+		invalidate();
+	}
+
+	public boolean isShowBorderShadow() {
+		return isShowBorderShadow;
 	}
 
 	public PswText(Context context) {
@@ -247,7 +398,7 @@ public class PswText extends View {
 					//明文密码
 					String num = result.get(i) + "";
 					//圆点坐标
-					float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+					float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 					float circleY = height / 2;
 					//密码框坐标
 					drawText(canvas, num, i);
@@ -264,7 +415,7 @@ public class PswText extends View {
 					//即按下back键时，不绘制明文密码
 					if (!isShowTextPsw) {
 						if (saveResult > result.size()) {
-							canvas.drawCircle((float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 + (0.6 * spacingWidth))), circleY, dotRadius, pswDotPaint);
+							canvas.drawCircle((float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 + (0.5 * spacingWidth))), circleY, dotRadius, pswDotPaint);
 						}
 					}
 					//当输入第二个密码时，才开始从第一个位置绘制圆点
@@ -286,7 +437,7 @@ public class PswText extends View {
 				}
 			} else if (darkPsw) {
 				for (int i = 0; i < result.size(); i++) {
-					float circleX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+					float circleX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 					float circleY = height / 2;
 					int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
 					int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
@@ -302,7 +453,7 @@ public class PswText extends View {
 					//明文密码
 					String num = result.get(i) + "";
 					//圆点坐标
-					float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+					float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 					float circleY = height / 2;
 					//密码框坐标
 					int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
@@ -324,7 +475,7 @@ public class PswText extends View {
 					//即按下back键时，不绘制明文密码
 					if (!isShowTextPsw) {
 						if (saveResult > result.size()) {
-							canvas.drawCircle((float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 + (0.6 * spacingWidth))), circleY, dotRadius, pswDotPaint);
+							canvas.drawCircle((float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 + (0.5 * spacingWidth))), circleY, dotRadius, pswDotPaint);
 						}
 					}
 					//当输入第二个密码时，才开始从第一个位置绘制圆点
@@ -342,7 +493,7 @@ public class PswText extends View {
 		Rect mTextBound = new Rect();
 		pswTextPaint.getTextBounds(num, 0, num.length(), mTextBound);
 		Paint.FontMetrics fontMetrics = pswTextPaint.getFontMetrics();
-		float textX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 - mTextBound.width() / 2) + (0.5 * spacingWidth));
+		float textX = (float) ((i * (borderWidth + spacingWidth)) + (borderWidth / 2 - mTextBound.width() / 2) + (0.45 * spacingWidth));
 		float textY = (height - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
 		if (saveResult != 0 || saveResult < result.size()) {
 			canvas.drawText(num, textX, textY, pswTextPaint);
@@ -354,22 +505,22 @@ public class PswText extends View {
 		invalidated = false;
 		if (isChangeBorder) {
 			for (int i = 0; i < result.size(); i++) {
-				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 				float circleY = height / 2;
 				canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 			}
-			canvas.drawCircle((float) ((float) (((result.size() - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2)) + (0.6 * spacingWidth)),
+			canvas.drawCircle((float) ((float) (((result.size() - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2)) + (0.5 * spacingWidth)),
 					height / 2, dotRadius, pswDotPaint);
 		} else {
 			for (int i = 0; i < result.size(); i++) {
-				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.6 * spacingWidth));
+				float circleX = (float) (((i - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2) + (0.5 * spacingWidth));
 				float circleY = height / 2;
 				int left = (int) (i * (borderWidth + spacingWidth) + (0.5 * spacingWidth));
 				int right = (int) (((i + 1) * borderWidth) + (i * spacingWidth) + (0.5 * spacingWidth));
 				canvas.drawCircle(circleX, circleY, dotRadius, pswDotPaint);
 				drawBitmapOrBorder(canvas, left, right, height);
 			}
-			canvas.drawCircle((float) ((float) (((result.size() - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2)) + (0.6 * spacingWidth)),
+			canvas.drawCircle((float) ((float) (((result.size() - 1) * (borderWidth + spacingWidth)) + (borderWidth / 2)) + (0.5 * spacingWidth)),
 					height / 2, dotRadius, pswDotPaint);
 		}
 		handler.removeMessages(1);

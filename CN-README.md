@@ -28,14 +28,9 @@ Step 2. Add the dependency
 
 
 	dependencies {
-	        compile 'com.github.rokudol:PswText:v1.0.2'
+	        compile 'com.github.rokudol:PswText:v1.0.3'
 	}
 	
-
-或者直接在build中添加：
-
-compile 'com.rokudoll:PswText:1.0.1'
-
 
 属性：
 
@@ -78,5 +73,12 @@ _新增功能：_
 _修复bug：_
 
 1. 确定高度时，宽度自适应导致宽度绘制不正确的问题
+
+## v1.0.3
+
+_修复bug：_
+
+1. 修复明文密码和密文密码绘制没有居中的问题
+2. 新增各个属性的getter setter方法，可在java代码中直接用setter去设置各个属性
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more

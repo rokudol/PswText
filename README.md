@@ -30,15 +30,9 @@ Step 2. Add the dependency
 
 
 	dependencies {
-	        compile 'com.github.rokudol:PswText:v1.0.2'
+	        compile 'com.github.rokudol:PswText:v1.0.3'
 	}
 	
-
-Or add directly to build：
-
-    compile 'com.rokudoll:PswText:1.0.1'
-
-
 attrs：
 
 
@@ -88,6 +82,13 @@ _fix bug：_
 
 1. when the height measure mode is EXACTLY and width measure mode is AT_MOST, width draw not correct
 
+
+## v1.0.3:
+
+_fix bug：_
+
+1. clear text passwrod and ciphr text password no drawn in the middle position
+2. Add getter setter methods for each property
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
   [2]: https://github.com/rokudol/PswText/blob/master/CN-README.md
