@@ -56,6 +56,7 @@ attrs：
 | darkPsw | boolean | whether to draw only dots, the default is false |
 | isChangeBorder | boolean | whether to change the password box color when entering the password, the default is false |
 
+  "setInputCallBack" can regist callback,trigger listening after input is complete,ability to get the password entered by the user
   
 Release Notes：
 ======
