@@ -30,7 +30,7 @@ Step 2. Add the dependency
 
 
 	dependencies {
-	        compile 'com.github.rokudol:PswText:v1.0.3'
+	        compile 'com.github.rokudol:PswText:v1.0.4'
 	}
 	
 attrs：
