@@ -56,7 +56,7 @@ attrs：
 | darkPsw | boolean | whether to draw only dots, the default is false |
 | isChangeBorder | boolean | whether to change the password box color when entering the password, the default is false |
 
-  "setInputCallBack" can regist callback,trigger listening after input is complete,ability to get the password entered by the user
+  "setTextWatcher" can trigger input listener, textChanged can get the user's current input password and whether the status has been entered, true - input is completed, false - not entered completed
   
 Release Notes：
 ======
@@ -90,6 +90,11 @@ _fix bug：_
 
 1. clear text passwrod and ciphr text password no drawn in the middle position
 2. Add getter setter methods for each property
+
+## v1.0.4:
+
+_added function:_
+1. 
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
   [2]: https://github.com/rokudol/PswText/blob/master/CN-README.md

@@ -55,7 +55,7 @@ Step 2. Add the dependency
 | darkPsw            |  boolean |                 是否只绘制圆点，默认为false                  |
 | isChangeBorder     |  boolean |        是否在输入密码时不更改密码框颜色，默认为false         |
 
- setInputCallBack可注册监听，在用户输入完所有密码后，会触发该监听并回调用户所输入的密码
+ setTextWatcher可触发输入监听，textChanged可获取用户当前输入的密码及是否已输入完成的状态，true-输入完成，false-未输入完成
 
 
 更新说明：
@@ -82,5 +82,10 @@ _修复bug：_
 
 1. 修复明文密码和密文密码绘制没有居中的问题
 2. 新增各个属性的getter setter方法，可在java代码中直接用setter去设置各个属性
+
+## v1.0.4
+
+_新增功能：_ 
+1. Discard InputCallBack, add TextWatcher, textChanged callback will return the user's current password and whether it has been entered completed
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more

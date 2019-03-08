@@ -53,6 +53,7 @@ public class PswText extends View {
 	private int borderWidth;//边框宽度
 	private int spacingWidth;//边框之间的间距宽度
 	private InputCallBack inputCallBack;//输入完成时监听
+	private TextWatcher textWatcher;
 	private int height;//整个view的高度
 
 	private static boolean invalidated = false;
@@ -71,12 +72,26 @@ public class PswText extends View {
 		}
 	};
 
+
+	@Deprecated
 	public interface InputCallBack {
 		void onInputFinish(String password);
 	}
 
+	/**
+	 * inputCallback was Deprecated,can use {@link #setTextWatcher}.
+	 */
+	@Deprecated
 	public void setInputCallBack(InputCallBack inputCallBack) {
 		this.inputCallBack = inputCallBack;
+	}
+
+	public interface TextWatcher {
+		void textChanged(String password, boolean isFinishInput);
+	}
+
+	public void setTextWatcher(TextWatcher textWatcher) {
+		this.textWatcher = textWatcher;
 	}
 
 	public void setPswLength(int pswLength) {
@@ -655,7 +670,8 @@ public class PswText extends View {
 						saveResult = result.size();
 						result.remove(result.size() - 1);
 						invalidate();
-					}
+                        FinishInput();
+                    }
 					return true;
 				}
 				if (keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -670,14 +686,23 @@ public class PswText extends View {
 		 * 输入完成后调用的方法
 		 */
 		void FinishInput() {
-			if (result.size() == pswLength && inputCallBack != null) {//输入已完成
-				StringBuffer sb = new StringBuffer();
-				for (int i : result) {
-					sb.append(i);
+			StringBuffer sb = new StringBuffer();
+			for (int i : result) {
+				sb.append(i);
+			}
+			if (result.size() == pswLength) {//输入已完成
+				if (inputCallBack != null) {
+					inputCallBack.onInputFinish(sb.toString());
 				}
-				inputCallBack.onInputFinish(sb.toString());
+				if (textWatcher != null) {
+					textWatcher.textChanged(sb.toString(), true);
+				}
 				InputMethodManager imm = (InputMethodManager) PswText.this.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(PswText.this.getWindowToken(), 0); //输入完成后隐藏键盘
+			} else {
+				if (textWatcher != null) {
+					textWatcher.textChanged(sb.toString(), false);
+				}
 			}
 		}
 	}
