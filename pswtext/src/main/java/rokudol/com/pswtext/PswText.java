@@ -24,7 +24,10 @@ import android.view.inputmethod.InputMethodManager;
 
 import java.util.ArrayList;
 
-
+/**
+ * 请使用{@link PwdText}
+ */
+@Deprecated
 public class PswText extends View {
 	private InputMethodManager input;//输入法管理
 	private ArrayList<Integer> result;//保存当前输入的密码
@@ -265,25 +268,25 @@ public class PswText extends View {
 		input = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		result = new ArrayList<>();
 
-		TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.PswText);
+		TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.PwdText);
 		if (array != null) {
-			pswLength = array.getInt(R.styleable.PswText_pswLength, 6);
-			pswColor = array.getColor(R.styleable.PswText_pswColor, Color.parseColor("#3779e3"));
-			borderColor = array.getColor(R.styleable.PswText_borderColor, Color.parseColor("#999999"));
-			inputBorderColor = array.getColor(R.styleable.PswText_inputBorder_color, Color.parseColor("#3779e3"));
-			borderShadowColor = array.getColor(R.styleable.PswText_borderShadow_color, Color.parseColor("#3577e2"));
-			borderImg = array.getResourceId(R.styleable.PswText_borderImg, R.drawable.pic_dlzc_srk1);
-			inputBorderImg = array.getResourceId(R.styleable.PswText_inputBorderImg, R.drawable.pic_dlzc_srk);
-			isBorderImg = array.getBoolean(R.styleable.PswText_isDrawBorderImg, false);
-			isShowTextPsw = array.getBoolean(R.styleable.PswText_isShowTextPsw, false);
-			isShowBorderShadow = array.getBoolean(R.styleable.PswText_isShowBorderShadow, false);
-			clearTextPsw = array.getBoolean(R.styleable.PswText_clearTextPsw, false);
-			darkPsw = array.getBoolean(R.styleable.PswText_darkPsw, false);
-			isChangeBorder = array.getBoolean(R.styleable.PswText_isChangeBorder, false);
-			delayTime = array.getInt(R.styleable.PswText_delayTime, 1000);
-			pswTextSize = (int) array.getDimension(R.styleable.PswText_psw_textSize,
+			pswLength = array.getInt(R.styleable.PwdText_pswLength, 6);
+			pswColor = array.getColor(R.styleable.PwdText_pswColor, Color.parseColor("#3779e3"));
+			borderColor = array.getColor(R.styleable.PwdText_borderColor, Color.parseColor("#999999"));
+			inputBorderColor = array.getColor(R.styleable.PwdText_inputBorder_color, Color.parseColor("#3779e3"));
+			borderShadowColor = array.getColor(R.styleable.PwdText_borderShadow_color, Color.parseColor("#3577e2"));
+			borderImg = array.getResourceId(R.styleable.PwdText_borderImg, R.drawable.pic_dlzc_srk1);
+			inputBorderImg = array.getResourceId(R.styleable.PwdText_inputBorderImg, R.drawable.pic_dlzc_srk);
+			isBorderImg = array.getBoolean(R.styleable.PwdText_isDrawBorderImg, false);
+			isShowTextPsw = array.getBoolean(R.styleable.PwdText_isShowTextPsw, false);
+			isShowBorderShadow = array.getBoolean(R.styleable.PwdText_isShowBorderShadow, false);
+			clearTextPsw = array.getBoolean(R.styleable.PwdText_clearTextPsw, false);
+			darkPsw = array.getBoolean(R.styleable.PwdText_darkPsw, false);
+			isChangeBorder = array.getBoolean(R.styleable.PwdText_isChangeBorder, false);
+			delayTime = array.getInt(R.styleable.PwdText_delayTime, 1000);
+			pswTextSize = (int) array.getDimension(R.styleable.PwdText_psw_textSize,
 					TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 18, getResources().getDisplayMetrics()));
-			borderRadius = (int) array.getDimension(R.styleable.PswText_borderRadius,
+			borderRadius = (int) array.getDimension(R.styleable.PwdText_borderRadius,
 					TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
 		} else {
 			pswLength = 6;

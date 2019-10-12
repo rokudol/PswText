@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -9,31 +8,30 @@
     android:orientation="vertical"
     tools:context="rokudol.com.pswedittext.MainActivity">
 
-    <rokudol.com.pswtext.PswText
+    <rokudol.com.pswtext.PwdText
         android:id="@+id/psw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:isDrawBorderImg="true"/>
+        android:layout_marginTop="10dp" />
 
-    <rokudol.com.pswtext.PswText
+    <rokudol.com.pswtext.PwdText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
-    <rokudol.com.pswtext.PswText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:isShowTextPsw="true"/>
-
-    <rokudol.com.pswtext.PswText
+    <rokudol.com.pswtext.PwdText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:darkPsw="true"/>
+        app:isShowTextPsw="true" />
 
-    <rokudol.com.pswtext.PswText
+    <rokudol.com.pswtext.PwdText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:darkPsw="true" />
+
+    <rokudol.com.pswtext.PwdText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

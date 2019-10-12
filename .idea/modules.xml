@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PswEditText.iml" filepath="$PROJECT_DIR$/PswEditText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PswText.iml" filepath="$PROJECT_DIR$/PswText.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/pswtext/pswtext.iml" filepath="$PROJECT_DIR$/pswtext/pswtext.iml" />
     </modules>

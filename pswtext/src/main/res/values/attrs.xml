@@ -2,7 +2,7 @@
 <resources>
 
     <!--密码输入框-->
-    <declare-styleable name="PswText">
+    <declare-styleable name="PwdText">
         <!--密码长度-->
         <attr name="pswLength" format="integer"/>
         <!--密码框颜色-->
