@@ -56,6 +56,8 @@ Step 2. Add the dependency
 | isChangeBorder     |  boolean |        是否在输入密码时不更改密码框颜色，默认为false         |
 
  setTextWatcher可触发输入监听，textChanged可获取用户当前输入的密码及是否已输入完成的状态，true-输入完成，false-未输入完成
+ 
+ 开发者可使用pwdText.getAttrBean().setXXX()方法设置控件属性
 
 
 更新说明：
@@ -89,3 +91,8 @@ _新增功能：_
 1. 废弃InputCallBack，添加TextWatcher，textChanged回调将返回用户的当前密码以及是否已输入完成
 
   [1]: http://blog.rokudol.cn/%E8%87%AA%E5%AE%9A%E4%B9%89view---%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%AF%86%E7%A0%81%E8%BE%93%E5%85%A5%E6%A1%86.html#more
+
+## v2.0.0
+
+_重构：_
+1. 使用kotlin重构PswText，废弃PswText，使用PwdText替代
